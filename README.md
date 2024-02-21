@@ -1,2 +1,2 @@
-# mlop_v2
-Software Developer Salary Prediction MLOp v2
+# Final_Project_MLOps
+Team 3 Final Project - MLOps
