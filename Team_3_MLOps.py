@@ -7,6 +7,9 @@ import numpy as np
 from PIL import Image
 import joblib
 from io import BytesIO
+import base64
+import xlsxwriter
+
 # import locale
 
 # # Display the GitHub link at the beginning of the app
