@@ -885,3 +885,19 @@ else:
                 mime='text/csv',
             )
 
+            # DataFrame'i Excel olarak indirme işlevi
+            def to_excel(df):
+                output = BytesIO()
+                with pd.ExcelWriter(output, engine='xlsxwriter') as writer:
+                    df.to_excel(writer, index=False, sheet_name='Sheet1')
+                processed_data = output.getvalue()
+                return processed_data
+            
+            excel_data = to_excel(result_df)  # result_df DataFrame'ini Excel'e dönüştür
+            st.download_button(
+                label="Download data as Excel",
+                data=excel_data,
+                file_name="prediction_results.xlsx",
+                mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+            )
+
