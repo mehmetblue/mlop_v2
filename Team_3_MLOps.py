@@ -874,3 +874,14 @@ else:
             st.markdown("<h3></h3>", unsafe_allow_html=True)
             st.subheader('Prediction')
             st.write(result_df)
+
+            # DataFrame'i CSV string'ine çevir
+            csv = result_df.to_csv(index=False)
+            # CSV string'ini indirme butonu ile kullanıcıya sun
+            st.download_button(
+                label="Download data as CSV",
+                data=csv,
+                file_name='prediction_results.csv',
+                mime='text/csv',
+            )
+
