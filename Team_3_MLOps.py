@@ -6,6 +6,7 @@ import pandas as pd
 import numpy as np
 from PIL import Image
 import joblib
+from io import BytesIO
 # import locale
 
 # # Display the GitHub link at the beginning of the app
