@@ -8,8 +8,8 @@ from PIL import Image
 import joblib
 # import locale
 
-# Display the GitHub link at the beginning of the app
-st.markdown('[GitHub Repository](https://github.com/mehmetblue/Final_Project_MLOps/tree/main)')
+# # Display the GitHub link at the beginning of the app
+# st.markdown('[GitHub Repository](https://github.com/mehmetblue/Final_Project_MLOps/tree/main)')
 
 #load the model from disk
 filename = "catb_model_24outbaski.sav"
@@ -31,6 +31,9 @@ add_selectbox = st.sidebar.selectbox(
 "How would you like to predict?", ("Online", "Batch"))
 st.sidebar.info('This app is created to predict Developers Salaries based on Stack Overflow 2018 Developers Survey')
 st.sidebar.image(image)
+
+# Adding the GitHub Repo link at the bottom of the sidebar
+st.sidebar.markdown('[Project GitHub Repo](https://github.com/mehmetblue/Final_Project_MLOps)')
 
 if add_selectbox == "Online":
     st.info("Please Input data below")
