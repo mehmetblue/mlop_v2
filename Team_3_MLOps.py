@@ -33,7 +33,8 @@ st.sidebar.info('This app is created to predict Developers Salaries based on Sta
 st.sidebar.image(image)
 
 # Adding the GitHub Repo link at the bottom of the sidebar
-st.sidebar.markdown('[Project GitHub Repo](https://github.com/mehmetblue/Final_Project_MLOps)')
+# st.sidebar.markdown('[Project GitHub Repo](https://github.com/mehmetblue/Final_Project_MLOps)')
+st.sidebar.info('[Project GitHub Repo](https://github.com/mehmetblue/Final_Project_MLOps)')
 
 if add_selectbox == "Online":
     st.info("Please Input data below")
