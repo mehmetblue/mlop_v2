@@ -505,7 +505,13 @@ if add_selectbox == "Online":
         # st.success(result_value, icon="💰")
         # st.success(prediction_df["Prediction"][0])
         # st.write('$', round(prediction_df["Prediction"][0]))
-        st.info(round(prediction_df["Prediction"][0]))
+        # st.info(round(prediction_df["Prediction"][0]))
+
+
+        # Prediction değerini yuvarla ve string formatında göster
+        prediction_value = round(prediction_df["Prediction"][0])
+        info_message = f"Predicted value:${prediction_value}"
+        st.info(info_message)
 
 else:
     st.subheader("Dataset upload")
