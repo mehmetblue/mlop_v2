@@ -870,7 +870,7 @@ else:
             prediction_df = pd.DataFrame(prediction, columns=["Prediction_$"])
 
             # Dropping the decimal parts of the data in the "Prediction_$" column and using a dot as the thousands separator
-            prediction_df['Value'] = prediction_df['Value'].astype(float).map(lambda x: "{:,.0f}".format(x).replace(',', '.'))
+            prediction_df['Prediction_$'] = prediction_df['Prediction_$'].astype(float).map(lambda x: "{:,.0f}".format(x).replace(',', '.'))
 
             result_df = pd.concat([df_batch, prediction_df], axis=1, ignore_index=False, sort=False)
 
