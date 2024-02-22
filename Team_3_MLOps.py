@@ -8,7 +8,8 @@ from PIL import Image
 import joblib
 from io import BytesIO
 import base64
-import xlsxwriter
+import openpyxl
+# import xlsxwriter
 # import XlsxWriter
 # import locale
 
@@ -889,20 +890,38 @@ else:
                 mime='text/csv',
             )
 
+            # # DataFrame'i Excel olarak indirme işlevi
+            # def to_excel(df):
+            #     output = BytesIO()
+            #     with pd.ExcelWriter(output, engine='xlsxwriter') as writer:
+            #     # with pd.ExcelWriter(output, engine='XlsxWriter') as writer:
+            #         df.to_excel(writer, index=False, sheet_name='Sheet1')
+            #     processed_data = output.getvalue()
+            #     return processed_data
+            
+            # excel_data = to_excel(result_df)  # result_df DataFrame'ini Excel'e dönüştür
+            # st.download_button(
+            #     label="Download data as Excel",
+            #     data=excel_data,
+            #     file_name="prediction_results.xlsx",
+            #     mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+            # )
+
             # DataFrame'i Excel olarak indirme işlevi
             def to_excel(df):
                 output = BytesIO()
-                with pd.ExcelWriter(output, engine='xlsxwriter') as writer:
-                # with pd.ExcelWriter(output, engine='XlsxWriter') as writer:
+                with pd.ExcelWriter(output, engine='openpyxl', mode='w') as writer:
                     df.to_excel(writer, index=False, sheet_name='Sheet1')
-                processed_data = output.getvalue()
-                return processed_data
+                output.seek(0)  # Dosya imlecini başa alır
+                return output
             
-            excel_data = to_excel(result_df)  # result_df DataFrame'ini Excel'e dönüştür
+            # result_df zaten tanımlı olduğu için bu adımı atlıyoruz.
+            
+            # DataFrame'i Excel'e dönüştür ve indirme butonunu oluştur
+            excel_file = to_excel(result_df)
             st.download_button(
                 label="Download data as Excel",
-                data=excel_data,
+                data=excel_file,
                 file_name="prediction_results.xlsx",
                 mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
             )
-
