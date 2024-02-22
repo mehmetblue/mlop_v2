@@ -9,12 +9,7 @@ import joblib
 from io import BytesIO
 import base64
 import openpyxl
-# import xlsxwriter
-# import XlsxWriter
-# import locale
 
-# # Display the GitHub link at the beginning of the app
-# st.markdown('[GitHub Repository](https://github.com/mehmetblue/Final_Project_MLOps/tree/main)')
 
 #load the model from disk
 filename = "catb_model_24outbaski.sav"
@@ -513,7 +508,7 @@ if add_selectbox == "Online":
         # st.info(round(prediction_df["Prediction"][0]))
 
 
-        # Prediction değerini yuvarla ve string formatında göster
+        # Round the prediction value and display it in string format
         prediction_value = round(prediction_df["Prediction"][0])
         prediction_value = f"{prediction_value:,}".replace(",", ".")
         info_message = f"Predicted value: $ {prediction_value}"
@@ -874,15 +869,18 @@ else:
 
             prediction_df = pd.DataFrame(prediction, columns=["Prediction_$"])
 
+            # Dropping the decimal parts of the data in the "Prediction_$" column and using a dot as the thousands separator
+            prediction_df['Value'] = prediction_df['Value'].astype(float).map(lambda x: "{:,.0f}".format(x).replace(',', '.'))
+
             result_df = pd.concat([df_batch, prediction_df], axis=1, ignore_index=False, sort=False)
 
             st.markdown("<h3></h3>", unsafe_allow_html=True)
             st.subheader('Prediction')
             st.write(result_df)
 
-            # DataFrame'i CSV string'ine çevir
+            # Convert DataFrame to CSV string
             csv = result_df.to_csv(index=False)
-            # CSV string'ini indirme butonu ile kullanıcıya sun
+            # Present the CSV string to the user with the download button
             st.download_button(
                 label="Download data as CSV",
                 data=csv,
@@ -907,7 +905,7 @@ else:
             #     mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
             # )
 
-            # DataFrame'i Excel olarak indirme işlevi
+            # Function to download DataFrame as Excel
             def to_excel(df):
                 output = BytesIO()
                 with pd.ExcelWriter(output, engine='openpyxl', mode='w') as writer:
@@ -915,9 +913,8 @@ else:
                 output.seek(0)  # Dosya imlecini başa alır
                 return output
             
-            # result_df zaten tanımlı olduğu için bu adımı atlıyoruz.
             
-            # DataFrame'i Excel'e dönüştür ve indirme butonunu oluştur
+            # Convert DataFrame to Excel and create download button
             excel_file = to_excel(result_df)
             st.download_button(
                 label="Download data as Excel",
