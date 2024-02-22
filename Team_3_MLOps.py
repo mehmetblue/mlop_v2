@@ -510,7 +510,7 @@ if add_selectbox == "Online":
 
         # Prediction değerini yuvarla ve string formatında göster
         prediction_value = round(prediction_df["Prediction"][0])
-        info_message = f"Predicted value:${prediction_value}"
+        info_message = f"Predicted value: $ {prediction_value}"
         st.info(info_message)
 
 else:
