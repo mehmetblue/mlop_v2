@@ -8,7 +8,7 @@ from PIL import Image
 import joblib
 from io import BytesIO
 import base64
-# import xlsxwriter
+import xlsxwriter
 
 # import locale
 
